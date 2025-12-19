@@ -3,6 +3,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
+const axios = require("axios");
 
 
 public_users.post("/register", (req,res) => {
@@ -73,3 +74,42 @@ public_users.get('/review/:isbn',function (req, res) {
 });
 
 module.exports.general = public_users;
+
+// Async Await Axios
+const URL = "https://marcelinojes-5000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai";
+
+async function getAllBooks() {
+    try {
+        const response = await axios.get(URL + "/");
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getBooksByISBN(isbn) {
+    try {
+        const response = await axios.get(URL + "/isbn/" + isbn);
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getBooksByAuthor(author) {
+    try {
+        const response = await axios.get(URL + "/author/" + author);
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getBooksByTitle(title) {
+    try {
+        const response = await axios.get(URL + "/title/" + title);
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
