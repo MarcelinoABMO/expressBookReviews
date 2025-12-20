@@ -50,7 +50,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     const review = req.body.txt;
     book.reviews[username] = review;
 
-    res.send("Review added!");
+    res.send({message:"Review added!"});
 });
 
 // Delete a book review
@@ -64,7 +64,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
 
     delete book.reviews[username];
 
-    res.send("Review deleted!");
+    res.send({message:"Review deleted!"});
 });
 
 module.exports.authenticated = regd_users;
